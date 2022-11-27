@@ -1,17 +1,21 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { ProjectPage } from "./pages/ProjectPage";
+import { RouteProvider, useRoute } from "./routes";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Listing</div>,
-  },
-  {
-    path: "/bob",
-    element: <div>Détail</div>,
-  },
-]);
+const Router = () => {
+  const route = useRoute();
 
-export const App = () => <RouterProvider router={router} />;
+  return (
+    <>
+      {route.name === "home" && <HomePage />}
+      {route.name === "project" && <ProjectPage route={route} />}
+    </>
+  );
+};
+
+export const App = () => (
+  <RouteProvider>
+    <Router />
+  </RouteProvider>
+);
