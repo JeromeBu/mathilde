@@ -1,0 +1,1 @@
+export const Home = () => <div>Ceci est la Home</div>
